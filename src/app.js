@@ -20,14 +20,15 @@ connectDB()
         }
     )
 
-app.post("/signUp", async (req,res)=>{
-    const user = new User({
-        firstName : "Sachin",
-        lastName : "Tendulkar",
-        emailID : "Sachin@shaTendulkar.com",
-        age : 45,
-        gender : "male"
-    })
+
+// json middilware
+app.use(
+    express.json()
+)
+
+app.post("/signup", async (req,res)=>{
+    
+    const user = new User(req.body)
 
     try{
         await user.save();

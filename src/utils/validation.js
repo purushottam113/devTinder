@@ -14,4 +14,29 @@ const isSigninValid = (req) => {
     }
 }
 
-module.exports = {isSigninValid};
+const isEditValidator = (req) => {
+    const validList = ["firstName", 
+        "lastName", 
+        "age", 
+        "about",
+        "gender",
+        "skills",
+        "profileURL"
+    ]
+
+    const isEditValid = Object.keys(req.body).every(validList.includes(key));
+    return isEditValid;
+}
+
+const changePasswordValidator = (req) =>{
+    const {emailID, password} = req;
+
+    if(!validator.isEmail(emailID) || !password){
+        throw new Error("invalid Creditionals");
+    }
+    else if(!validator.isStrongPassword(password)){
+        throw new Error("Please enter strong password")
+    }
+}
+
+module.exports = {isSigninValid, isEditValidator, changePasswordValidator};

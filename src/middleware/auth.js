@@ -7,7 +7,7 @@ const userAuth = async (req,res,next)=>{
                    const decodedUser = jwt.verify(token, "Moonlight")
                    const {_id} = decodedUser
 
-                   const user = await User.findById("677fe9185c17aa5c852c9adb");
+                   const user = await User.findById(_id);
 
                    req.user = user
                    next()

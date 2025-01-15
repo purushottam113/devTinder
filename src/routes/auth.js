@@ -26,7 +26,7 @@ authRouter.post("/login", async (req,res) => {
         const isPasswordValid = await user.isPasswordValid(password);
         if(!isPasswordValid){
             throw new Error("Invalide Creditionals..") 
-        }
+        }   
         else{
             //Create Token
             const jwtToken = await user.getJWT()
@@ -48,7 +48,7 @@ authRouter.post("/signup", async (req,res)=>{
         // validate a req.body
         isSigninValid(req.body)
         // encript the password
-        const {firstName, lastName, emailID, password} = req.body
+        const {firstName, lastName, emailID, password, skills} = req.body
 
         const hashPassword = await bcrypt.hash(password,10)
 
@@ -56,6 +56,7 @@ authRouter.post("/signup", async (req,res)=>{
             firstName,
             lastName,
             emailID,
+            skills,
             password : hashPassword,
         }
 

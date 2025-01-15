@@ -1,18 +1,21 @@
-const moongose = require(moongose);
-const {Schema} = moongose
+const mongoose = require("mongoose");
+const {Schema} = mongoose
 
 const connectionRequestSchema = new Schema({
      senderId :{
-        value: moongose.ObjectId,
+        type: mongoose.ObjectId,
         required: true
      },
      receiverId :{
-        value: moongose.ObjectId,
+        type: mongoose.ObjectId,
         required: true
      },
      status :{
-        value: String,
-        required: true
+        type: String,
+        required: true,
+        enum: {
+         values: ["ignored", "intrested", "accepted","rejected"]
+        }
      }
 },
 {
@@ -20,5 +23,5 @@ const connectionRequestSchema = new Schema({
 }
 )
 
-const connectionRequest = moongose.model("connectionRequest", connectionRequestSchema)
-model.export = connectionRequest;
+const ConnectionRequest = new mongoose.model("ConnectionRequest", connectionRequestSchema)
+module.exports = ConnectionRequest;

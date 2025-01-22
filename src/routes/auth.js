@@ -48,7 +48,7 @@ authRouter.post("/signup", async (req,res)=>{
         // validate a req.body
         isSigninValid(req.body)
         // encript the password
-        const {firstName, lastName, emailID, password, skills} = req.body
+        const {firstName, lastName, emailID, password, skills, age, gender, about} = req.body
 
         const hashPassword = await bcrypt.hash(password,10)
 
@@ -58,6 +58,9 @@ authRouter.post("/signup", async (req,res)=>{
             emailID,
             skills,
             password : hashPassword,
+            age,
+            gender,
+            about
         }
 
         const user = new User(validData)

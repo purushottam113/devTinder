@@ -17,8 +17,8 @@ post /request/review/accepted/:requestedId
 post /request/review/rejected/:requestedId
 
 ## userRouter
+get /user/requests/received
 get /user/connections
-get /user/requests
 get /user/feed
 
 status: ignored, intrested, accepted, rejected
